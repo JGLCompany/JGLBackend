@@ -12,15 +12,11 @@
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>com.jgl.company.aplicacionjgl.backend.service.WebApp</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>jersey-serlvet</servlet-name>
         <url-pattern>/webresources/*</url-pattern>
     </servlet-mapping>
-    <session-config>
-        <session-timeout>30</session-timeout>
-    </session-config>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>

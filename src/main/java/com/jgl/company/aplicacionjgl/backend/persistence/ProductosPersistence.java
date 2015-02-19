@@ -30,7 +30,7 @@ public class ProductosPersistence {
         entityManager = emf.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            Query q = entityManager.createQuery("select u from ProductoEntity u order by u.nombre ASC");
+            Query q = entityManager.createQuery("select u from ProductoEntity u");
             productos = q.getResultList();
             entityManager.getTransaction().commit();
         } catch (Exception e) {
