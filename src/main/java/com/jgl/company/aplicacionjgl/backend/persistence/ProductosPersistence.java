@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -21,11 +22,24 @@ public class ProductosPersistence {
     protected EntityManager entityManager;
 
     public ProductosPersistence() {
-        emf = Persistence.createEntityManagerFactory("JGLEmpresaPU");// Construir persistence.xml
+        emf = Persistence.createEntityManagerFactory("AplicacionJGL");// Construir persistence.xml
     }
 
     public List<ProductoDTO> getProductos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<ProductoDTO> productos = null;
+        entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            Query q = entityManager.createQuery("select u from ProductoEntity u order by u.nombre ASC");
+            productos = q.getResultList();
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (entityManager.isOpen());
+            entityManager.close();
+        }
+        return productos;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public ProductoDTO getProducto(long id) {
