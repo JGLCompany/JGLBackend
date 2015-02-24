@@ -6,6 +6,7 @@
 package com.jgl.company.aplicacionjgl.backend.service;
 
 import com.jgl.company.aplicacionjgl.backend.DTO.ProductoDTO;
+import com.jgl.company.aplicacionjgl.backend.entity.ProductoEntity;
 import com.jgl.company.aplicacionjgl.backend.persistence.ProductosPersistence;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -28,7 +30,7 @@ import javax.ws.rs.Produces;
 public class ProductoService {
     
     
-    protected ProductosPersistence productosPersistence;
+    private ProductosPersistence productosPersistence;
     @PostConstruct
 	public void loadDependencies(){
 		productosPersistence = new ProductosPersistence();
@@ -37,28 +39,29 @@ public class ProductoService {
     
     
     @GET
-    public List<ProductoDTO> getProductos() {
+    public List<ProductoEntity> getProductos() {
         return productosPersistence.getProductos();
     }
 
     @Path("{id}")
     @GET
-    public ProductoDTO getProducto(@PathParam("id") long id) {
+    public ProductoEntity getProducto(@PathParam("id") long id) {
         return productosPersistence.getProducto(id);
     }
     
     @POST
-    public void setProducto(ProductoDTO producto){
-        productosPersistence.setProducto(producto);
+    public Response setProducto(ProductoEntity producto){
+        return productosPersistence.setProducto(producto);
     }
     
     @PUT
-    public void setProductoUpdate(@PathParam("id") long id){
-        productosPersistence.setProductoUpdate(id);
+    public Response setProductoUpdate(ProductoEntity producto){
+        return productosPersistence.setProductoUpdate(producto);
     }
     
+    @Path("{id}")
     @DELETE
-    public void deleteProducto(@PathParam("id") long id){
-        productosPersistence.deleteProducto(id);
+    public Response deleteProducto(@PathParam("id") long id){
+        return productosPersistence.deleteProducto(id);
     }
 }

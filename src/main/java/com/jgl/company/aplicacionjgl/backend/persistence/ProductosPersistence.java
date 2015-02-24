@@ -6,27 +6,29 @@
 package com.jgl.company.aplicacionjgl.backend.persistence;
 
 import com.jgl.company.aplicacionjgl.backend.DTO.ProductoDTO;
+import com.jgl.company.aplicacionjgl.backend.entity.ProductoEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author Jhonatan
  */
 public class ProductosPersistence {
-    
+
     protected EntityManagerFactory emf;
     protected EntityManager entityManager;
 
     public ProductosPersistence() {
-        emf = Persistence.createEntityManagerFactory("AplicacionJGL");// Construir persistence.xml
+        emf = Persistence.createEntityManagerFactory("AplicacionJGL");
     }
 
-    public List<ProductoDTO> getProductos() {
-        List<ProductoDTO> productos = null;
+    public List<ProductoEntity> getProductos() {
+        List<ProductoEntity> productos = null;
         entityManager = emf.createEntityManager();
         try {
             entityManager.getTransaction().begin();
@@ -34,28 +36,75 @@ public class ProductosPersistence {
             productos = q.getResultList();
             entityManager.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace();
             if (entityManager.isOpen());
             entityManager.close();
         }
         return productos;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ProductoDTO getProducto(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ProductoEntity getProducto(long id) {
+        ProductoEntity producto = null;
+        entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            producto = entityManager.find(ProductoEntity.class, id);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            if (entityManager.isOpen());
+            entityManager.close();
+        }
+        return producto;
+
     }
 
-    public void setProducto(ProductoDTO producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Response setProducto(ProductoEntity producto) {
+        int status = 200;
+        Long resp = 0L;
+        entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(producto);
+            entityManager.getTransaction().commit();
+            resp = producto.getId();
+        } catch (Exception e) {      
+            if (entityManager.isOpen());
+            entityManager.close();
+            status = 500;
+        } 
+        return Response.status(status).header("Access-Control-Allow-Origin", "*").entity(resp).build();
     }
 
-    public void setProductoUpdate(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Response setProductoUpdate(ProductoEntity detalle) {
+        int status = 200;
+        entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            ProductoEntity entity = entityManager.merge(detalle);
+            entityManager.getTransaction().commit();
+            System.out.printf("Se ha actualizado el registro" + " id: " + entity.getId());
+        } catch (Exception e) {
+            if (entityManager.isOpen());
+            entityManager.close();
+            status = 500;
+        }
+        return Response.status(status).header("Access-Control-Allow-Origin", "*").entity(detalle.getId()).build();
     }
 
-    public void deleteProducto(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Response deleteProducto(long id) {
+        int status = 200;
+        entityManager = emf.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            ProductoEntity entity = entityManager.find(ProductoEntity.class, id);
+            entityManager.remove(entity);
+            entityManager.getTransaction().commit();
+            System.out.printf("Se ha eliminado el registro" + " id: " + entity.getId());
+        } catch (Exception e) {
+            if (entityManager.isOpen());
+            entityManager.close();
+            status = 500;
+        }
+        return Response.status(status).header("Access-Control-Allow-Origin", "*").entity(id).build();
     }
-    
+
 }
