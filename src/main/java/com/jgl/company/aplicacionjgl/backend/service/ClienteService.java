@@ -42,11 +42,12 @@ public class ClienteService {
     
     }
     
+    @Path("{id}")
     @PUT
     public void setClienteUpdate(@PathParam("id") long id){
     
     }
-    
+    @Path("{id}")
     @DELETE
     public void deleteCliente(@PathParam("id") long id){
     

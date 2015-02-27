@@ -33,6 +33,9 @@ public class ProductoEntity implements Serializable {
     private int precioVenta;
     private double piva;
     private String codigoBarras;
+    private String detalle; 
+
+    
     
     public ProductoEntity(){
         
@@ -99,5 +102,13 @@ public class ProductoEntity implements Serializable {
 
     public void setCodigoBarras(String codigoBarras) {
         this.codigoBarras = codigoBarras;
+    }
+   
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 }

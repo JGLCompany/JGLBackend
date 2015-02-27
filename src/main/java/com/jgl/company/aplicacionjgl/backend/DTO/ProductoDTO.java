@@ -17,7 +17,9 @@ public class ProductoDTO {
     private int precioVenta;
     private double piva;
     private String codigoBarras;
+    private String detalle; 
 
+    
     
 
     public String getLinea() {
@@ -75,5 +77,14 @@ public class ProductoDTO {
     public void setCodigoBarras(String codigoBarras) {
         this.codigoBarras = codigoBarras;
     }
+    
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
+    }
+
     
 }
