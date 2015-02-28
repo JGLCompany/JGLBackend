@@ -6,7 +6,9 @@
 package com.jgl.company.aplicacionjgl.backend.entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,9 +21,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-public class ClienteEntity implements Serializable{
+public class ClienteEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
-     
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -36,14 +39,15 @@ public class ClienteEntity implements Serializable{
     private String direccion;
     private String coordenadaX;
     private String coordenadaY;
-    
-    @ManyToOne
-    private VendedorEntity vendedor;
 
-    public ClienteEntity(){
-        
+    //@ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.LAZY)
+    //private VendedorEntity vendedor;
+    private Long vendedorId;
+
+    public ClienteEntity() {
+
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -131,7 +135,7 @@ public class ClienteEntity implements Serializable{
     public void setCoordenadaY(String coordenadaY) {
         this.coordenadaY = coordenadaY;
     }
-    
+
     public String getCedula() {
         return cedula;
     }
@@ -140,14 +144,12 @@ public class ClienteEntity implements Serializable{
         this.cedula = cedula;
     }
 
-    public VendedorEntity getVendedor() {
-        return vendedor;
+    public Long getVendedorId() {
+        return vendedorId;
     }
 
-    public void setVendedor(VendedorEntity vendedor) {
-        this.vendedor = vendedor;
+    public void setVendedorId(Long vendedorId) {
+        this.vendedorId = vendedorId;
     }
-    
-    
-    
+
 }

@@ -27,6 +27,7 @@ public class VendedorEntity implements Serializable{
     private String nombre;
     private String apellidos;
     private String cedula;
+    
 
     public Long getId() {
         return id;

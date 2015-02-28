@@ -6,7 +6,12 @@
 package com.jgl.company.aplicacionjgl.backend.service;
 
 import com.jgl.company.aplicacionjgl.backend.DTO.ClienteDTO;
+import com.jgl.company.aplicacionjgl.backend.entity.ClienteEntity;
+import com.jgl.company.aplicacionjgl.backend.persistence.ClientePersistence;
+import com.jgl.company.aplicacionjgl.backend.persistence.ProductosPersistence;
+import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,31 +31,37 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class ClienteService {
 
+    
+    private ClientePersistence clientesPersistence;
+    @PostConstruct
+	public void loadDependencies(){
+		clientesPersistence = new ClientePersistence();
+	}
     @GET
-    public List<ClienteDTO> getClientes() {
-        return null;
+    public List<ClienteEntity> getClientes() {
+        return clientesPersistence.getClientes(); 
     }
 
     @Path("{id}")
     @GET
-    public ClienteDTO getCliente(@PathParam("id") long id) {
-        return null;
+    public ClienteEntity getCliente(@PathParam("id") long id) {
+        return clientesPersistence.getCliente(id);
     }
     
     @POST
-    public void setCliente(ClienteDTO cliente){
-    
+    public void setCliente(ClienteEntity cliente){
+        clientesPersistence.setCliente(cliente);
     }
     
     @Path("{id}")
     @PUT
-    public void setClienteUpdate(@PathParam("id") long id){
-    
+    public void setClienteUpdate(ClienteEntity cliente){
+        clientesPersistence.setClienteUpdate(cliente);
     }
     @Path("{id}")
     @DELETE
     public void deleteCliente(@PathParam("id") long id){
-    
+        clientesPersistence.deleteCliente(id);
     }
     
     

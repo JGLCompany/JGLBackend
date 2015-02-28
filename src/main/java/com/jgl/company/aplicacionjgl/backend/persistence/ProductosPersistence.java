@@ -5,7 +5,7 @@
  */
 package com.jgl.company.aplicacionjgl.backend.persistence;
 
-import com.jgl.company.aplicacionjgl.backend.DTO.ProductoDTO;
+
 import com.jgl.company.aplicacionjgl.backend.entity.ProductoEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
