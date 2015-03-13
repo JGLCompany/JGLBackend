@@ -8,8 +8,8 @@
             <property name="eclipselink.ddl-generation" value="create-tables"/>
             <!--      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-54-204-2-217.compute-1.amazonaws.com:5432/derhf04nit9u87?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/> jdbc:postgresql://ec2-23-21-187-45.compute-1.amazonaws.com:5432/d261n7rb2d6nrl?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory -     <property name="javax.persistence.jdbc.password" value="mKjhvgU6rGyc2CDWTWQnbLoRb-"/> jdbc:postgressql://@ec2-23-21-187-45.compute-1.amazonaws.com:5432/d261n7rb2d6nrl?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/> -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>  
-            <property name="javax.persistence.jdbc.user" value="smxryxefxfzdfr"/>
-            <property name="javax.persistence.jdbc.password" value="mKjhvgU6rGyc2CDWTWQnbLoRb-"/>
+            <property name="javax.persistence.jdbc.user" value="${USER}"/> 
+            <property name="javax.persistence.jdbc.password" value="${PASS}"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-23-21-187-45.compute-1.amazonaws.com:5432/d261n7rb2d6nrl?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
             <property name="eclipselink.logging.level" value="FINE"/>
             <property name="javax.persistence.schema-generation.database.action" value="create-tables"/>
@@ -17,7 +17,7 @@
     </persistence-unit>
 </persistence>
 <!--<properties>-->
-<!--      <property name="eclipselink.ddl-generation" value="create-tables"/>         
+<!--      <property name="eclipselink.ddl-generation" value="create-tables"/> smxryxefxfzdfr  mKjhvgU6rGyc2CDWTWQnbLoRb-        
 <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 <property name="javax.persistence.jdbc.url" value="jdbc:mysql://jglempresa.dvrdns.org:3306/datos1"/>  ?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory
 <property name="javax.persistence.jdbc.user" value="root"/>
