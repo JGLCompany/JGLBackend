@@ -13,11 +13,13 @@ import javax.annotation.PostConstruct;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
 /**
@@ -37,11 +39,17 @@ public class ProductoService {
 	}
     
     
-    
-    @GET
-    public List<ProductoEntity> getProductos() {
-        return productosPersistence.getProductos();
+    @OPTIONS
+    public Response cors(@javax.ws.rs.core.Context HttpHeaders requestHeaders) {
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS").header("Access-Control-Allow-Headers", "AUTHORIZATION, content-type, accept, X_REST_USER").build();
     }
+
+        
+        
+    @GET
+    public Response getProductos() {
+        return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(productosPersistence.getProductos()).build();
+    } //Mejorar eso porque no debe alterar al servicio.
 
     @Path("{id}")
     @GET
