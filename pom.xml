@@ -61,13 +61,6 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
-<!--        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>17.0</version>
-        </dependency> -->
-        
-        
         <!-- Jetty Libreria-->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
@@ -105,19 +98,12 @@
             <version>2.13</version>
         </dependency>
 
-        <!-- jUnit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
             <version>1.0-rev-1</version>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>3.12.1.GA</version>
@@ -137,8 +123,7 @@
         <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.1-901-1.jdbc4</version>
-<!--             <scope>provided</scope>-->
+            <version>9.1-901.jdbc4</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
