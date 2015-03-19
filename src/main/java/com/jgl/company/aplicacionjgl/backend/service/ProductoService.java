@@ -6,6 +6,7 @@
 package com.jgl.company.aplicacionjgl.backend.service;
 
 import com.jgl.company.aplicacionjgl.backend.DTO.ProductoDTO;
+import com.jgl.company.aplicacionjgl.backend.DTO.ProductoPageDTO;
 import com.jgl.company.aplicacionjgl.backend.entity.ProductoEntity;
 import com.jgl.company.aplicacionjgl.backend.persistence.ProductosPersistence;
 import java.util.List;
@@ -19,6 +20,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
@@ -39,17 +41,17 @@ public class ProductoService {
 	}
     
     
-    @OPTIONS
-    public Response cors(@javax.ws.rs.core.Context HttpHeaders requestHeaders) {
-        return Response.status(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS").header("Access-Control-Allow-Headers", "AUTHORIZATION, content-type, accept, X_REST_USER").build();
-    }
+//    @OPTIONS
+//    public Response cors(@javax.ws.rs.core.Context HttpHeaders requestHeaders) {
+//        return Response.status(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS").header("Access-Control-Allow-Headers", "AUTHORIZATION, content-type, accept, X_REST_USER").build();
+//    }
 
         
         
     @GET
-    public Response getProductos() {
-        return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*").entity(productosPersistence.getProductos()).build();
-    } //Mejorar eso porque no debe alterar al servicio.
+    public ProductoPageDTO getProductos(@QueryParam("page") Integer page, @QueryParam("maxRecords") Integer maxRecords) {
+        return productosPersistence.getProductos(page,maxRecords);
+    } 
 
     @Path("{id}")
     @GET

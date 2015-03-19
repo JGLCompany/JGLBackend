@@ -6,8 +6,8 @@
 package com.jgl.company.aplicacionjgl.backend.persistence;
 
 
+import com.jgl.company.aplicacionjgl.backend.DTO.ProductoPageDTO;
 import com.jgl.company.aplicacionjgl.backend.entity.ProductoEntity;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -27,13 +27,22 @@ public class ProductosPersistence {
         emf = Persistence.createEntityManagerFactory("AplicacionJGL");
     }
 
-    public List<ProductoEntity> getProductos() {
-        List<ProductoEntity> productos = null;
+    public ProductoPageDTO getProductos(Integer page, Integer maxRecords) {
+        ProductoPageDTO productos = null;
         entityManager = emf.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            Query q = entityManager.createQuery("select u from ProductoEntity u");
-            productos = q.getResultList();
+            Query count = entityManager.createQuery("select count(u) from ProductoEntity u");
+            Long regCount = 0L;
+            regCount = Long.parseLong(count.getSingleResult().toString());
+            Query query = entityManager.createQuery("select u from ProductoEntity u");
+            if(page != null && maxRecords != null){
+                query.setFirstResult((page-1)*maxRecords);
+                query.setMaxResults(maxRecords);
+            }
+            productos = new ProductoPageDTO();
+            productos.setTotalRecords(regCount);
+            productos.setProductos(query.getResultList());
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             if (entityManager.isOpen());
