@@ -39,15 +39,7 @@ public class ProductoService {
 	public void loadDependencies(){
 		productosPersistence = new ProductosPersistence();
 	}
-    
-    
-//    @OPTIONS
-//    public Response cors(@javax.ws.rs.core.Context HttpHeaders requestHeaders) {
-//        return Response.status(200).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS").header("Access-Control-Allow-Headers", "AUTHORIZATION, content-type, accept, X_REST_USER").build();
-//    }
-
-        
-        
+           
     @GET
     public ProductoPageDTO getProductos(@QueryParam("page") Integer page, @QueryParam("maxRecords") Integer maxRecords) {
         return productosPersistence.getProductos(page,maxRecords);
