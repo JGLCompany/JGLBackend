@@ -20,12 +20,11 @@ import javax.ws.rs.core.Response;
 @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
 @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
 public class LoginService {
-    
-    
+
     @GET
-    public Response loginService(LoginDTO login){
+    public Response loginService(LoginDTO login) {
         
-    return null;
+        return null;
     }
-            
+
 }
