@@ -6,6 +6,8 @@
 package com.jgl.company.aplicacionjgl.backend.service;
 
 import com.jgl.company.aplicacionjgl.backend.DTO.LoginDTO;
+import com.jgl.company.aplicacionjgl.backend.persistence.UsuarioPersistence;
+import javax.annotation.PostConstruct;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,11 +22,18 @@ import javax.ws.rs.core.Response;
 @Consumes(javax.ws.rs.core.MediaType.APPLICATION_JSON)
 @Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
 public class LoginService {
+    
+     private UsuarioPersistence usuarioPersistence;
+    @PostConstruct
+	public void loadDependencies(){
+		usuarioPersistence = new UsuarioPersistence();
+	}
+    
+    
 
     @GET
-    public Response loginService(LoginDTO login) {
-        
-        return null;
+    public Response loginService(LoginDTO login) {  
+        return usuarioPersistence.login(login);
     }
 
 }
