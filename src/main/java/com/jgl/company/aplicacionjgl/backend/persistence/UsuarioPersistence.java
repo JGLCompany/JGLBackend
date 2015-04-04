@@ -33,7 +33,7 @@ public class UsuarioPersistence {
         try {
             entityManager.getTransaction().begin();
             Query q = entityManager.createQuery("select u from UsuarioEntity where u.user=:user AND u.pass=:pass");
-            q.setParameter("user", login.getUser());
+            q.setParameter("user", login.getUserName());
             q.setParameter("pass", login.getPass());
             user = new LoginDTO();
             user = (LoginDTO) q.getSingleResult();

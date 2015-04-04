@@ -11,17 +11,17 @@ package com.jgl.company.aplicacionjgl.backend.DTO;
  */
 public class LoginDTO {
     
-    private String user;
+    private String userName;
     private String pass;
-    private String role;
+    private String rol;
     private String email;
 
-    public String getUser() {
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPass() {
@@ -32,12 +32,12 @@ public class LoginDTO {
         this.pass = pass;
     }
 
-    public String getRole() {
-        return role;
+    public String getRol() {
+        return rol;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public String getEmail() {
