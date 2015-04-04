@@ -6,6 +6,7 @@
 package com.jgl.company.aplicacionjgl.backend.persistence;
 
 import com.jgl.company.aplicacionjgl.backend.DTO.LoginDTO;
+import com.jgl.company.aplicacionjgl.backend.entity.UsuarioEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -28,22 +29,24 @@ public class UsuarioPersistence {
     
     public Response login(LoginDTO login) {
         int status = 500;
+        String statusStr = "usuario autenticado";
         entityManager = emf.createEntityManager();
-        LoginDTO user = null;
+        UsuarioEntity user = null;
         try {
             entityManager.getTransaction().begin();
-            Query q = entityManager.createQuery("select u from UsuarioEntity where u.user=:user AND u.pass=:pass");
-            q.setParameter("user", login.getUserName());
-            q.setParameter("pass", login.getPass());
-            user = new LoginDTO();
-            user = (LoginDTO) q.getSingleResult();
+            Query q = entityManager.createQuery("select u from UsuarioEntity u where u.userName=:usern AND u.pass=:pass",UsuarioEntity.class); //debe ser u.userName con cast al final del query
+            q.setParameter("usern", login.getUserName()).setParameter("pass", login.getPass());
+            user = (UsuarioEntity) q.getSingleResult();
             entityManager.getTransaction().commit();
             status = 200;
         } catch (Exception e) {
             entityManager.close();
+            e.printStackTrace();
+            statusStr = "usuario no autenticado";
+            
         }
         
-        return Response.status(status).entity("usuario authenticado").build();
+        return Response.status(status).entity(statusStr).build();
     }
 
 }

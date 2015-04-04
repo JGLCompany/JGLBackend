@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Gemelas
+ * @author Jhonatan
  */
 @Entity
 @XmlRootElement
@@ -34,6 +34,7 @@ public class UsuarioEntity implements Serializable {
     public UsuarioEntity(){
     
     }
+
     
     public Long getId() {
         return id;
