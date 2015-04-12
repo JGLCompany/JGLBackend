@@ -5,6 +5,7 @@
  */
 package com.jgl.company.aplicacionjgl.backend.persistence;
 
+import com.google.gson.Gson;
 import com.jgl.company.aplicacionjgl.backend.DTO.LoginDTO;
 import com.jgl.company.aplicacionjgl.backend.entity.UsuarioEntity;
 import javax.persistence.EntityManager;
@@ -39,11 +40,11 @@ public class UsuarioPersistence {
             q.setParameter("usern", login.getUserName()).setParameter("pass", login.getPass());
             user = (UsuarioEntity) q.getSingleResult();
             entityManager.getTransaction().commit();
-            return Response.status(200).entity(statusStr).build();
+            return Response.status(200).entity(new Gson().toJson(statusStr)).build();
         }catch(NoResultException e){
             entityManager.close();
             statusStr = "usuario no autenticado";
-            return Response.status(200).entity(statusStr).build(); 
+            return Response.status(200).entity(new Gson().toJson(statusStr)).build(); 
         }    
             
             
