@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2 class="section-heading" align="left">Registro</h2>
+            <h3 class="section-subheading text-muted" align="left">Bienvenido a JGL Company</h3>
+        </div>
+    </div>
+    <div class="row" ng-controller="userController">
+        <div class="col-lg-12">
+            <form ng-submit="register(user.name, user.pass, user.email, user.phone, user.lastName)" name="sentLogin" id="contactForm">
+                <div class="row">
+                    <div class="col-md-6" align="center">
+                        <div class="form-group">
+                            <input ng-model="user.name" type="name" class="form-control" placeholder="Tu nombre *" id="nameLog" required >
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="user.lastName" type="name" class="form-control" placeholder="Tus apellidos*" id="lastNamelog" required >
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="user.email" type="email" class="form-control" placeholder="Tu correo electrónico *" id="emailLog" required >
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="user.pass" type="password" class="form-control" placeholder="Tu contraseña*" id="passlog" required >
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="user.phone" type="phone" class="form-control" placeholder="Tu telefono *" id="phoneLog" required >
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12 text-left">
+                        <div id="success"></div>
+                        <button type="submit" class="btn btn-xl">Registrar</button>
+                        <a href="#login" class="btn btn-link">   Volver </a>
+                    </div>
+                    
+                    <div>
+                        <a>{{estado}}</a>
+                        
+                    </div>
+
+                    
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

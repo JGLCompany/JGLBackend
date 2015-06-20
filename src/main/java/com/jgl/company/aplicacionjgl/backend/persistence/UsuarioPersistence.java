@@ -31,7 +31,7 @@ public class UsuarioPersistence {
         emf = Persistence.createEntityManagerFactory("AplicacionJGL");
     }
 
-    public Response login(LoginDTO login) throws NonUniqueResultException { //Excepción que garantiza un solo resultado
+    public Response login(LoginDTO login) throws NonUniqueResultException { //Excepcion que garantiza un solo resultado
         entityManager = emf.createEntityManager();
         UsuarioEntity user = null;
         JSONObject userSend = new JSONObject();
