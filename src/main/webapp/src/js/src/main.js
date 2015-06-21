@@ -13,7 +13,9 @@
         'userModule',
         'userServices',
         'productModule',
-        'productServices'
+        'productServices',
+        'clientModule',
+        'clientServices'
     ]);
 
 
@@ -43,6 +45,8 @@
                 templateUrl: 'src/templates/register.html'
             }).when('/products', {
                 templateUrl: 'src/templates/products.html'
+            }).when('/clients', {
+                templateUrl: 'src/templates/client.html'    
             });
         }]);
 })();

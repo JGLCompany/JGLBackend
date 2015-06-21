@@ -1,0 +1,22 @@
+<div class="table-responsive" ng-controller="clientController">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Razon Social</th>
+                <th>Representante</th>
+                <th>Nit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="client in clients">
+                <td>{{client.razonSocial}}</td>
+                <td>{{client.representante}}</td>
+                <td>{{client.nit}}</td>
+<!--                <td>
+                    <button id="editBtn" class="btn btn-default btn-sm" ng-click="countryCtrl.editRecord(record)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                    <button id="deleteBtn" class="btn btn-default btn-sm" ng-click="countryCtrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Delete</button>
+                </td>-->
+            </tr>
+        </tbody>
+    </table>
+</div>
